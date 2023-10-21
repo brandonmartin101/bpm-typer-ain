@@ -2,7 +2,7 @@
 
 ## Deployment
 
-The web game is deployed at [Typer Ain](https://brandonmartin101.github.io/typer-ain/).
+The web game is deployed at [Typer Ain](https://brandonmartin101.github.io/bpm-typer-ain/).
 
 
 ## Project Description
