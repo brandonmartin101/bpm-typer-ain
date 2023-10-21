@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url(./RobotoSlab-Variable.ttf);
+  font-stretch: 25% 150%;
+  font-style: oblique 0deg 10deg;
+  font-weight: 100 700;
+  font-display: swap;
+}
+
+:root {
+  --color: #111;
+  --background: #fff;
+  --special: green;
+  --font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  --font-size: 18px;
+}
+
+/* RESET
+	From Josh Comeau
+	https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+/* END OF RESET */
+
+/* Now my stuff */
+html,
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color);
+  background-color: var(--background);
+  margin: 0;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+button {
+  max-width: 200px;
+  margin: 20px auto;
+}
+canvas {
+  border: 1px solid #222;
+  width: 1000px;
+  aspect-ratio: 2 / 1;
+  margin: 0 auto;
+}
