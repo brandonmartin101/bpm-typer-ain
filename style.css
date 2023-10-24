@@ -83,10 +83,34 @@ body {
 button {
   max-width: 200px;
   margin: 20px auto;
+  cursor: pointer;
 }
 canvas {
   border: 1px solid #222;
   width: 1000px;
   aspect-ratio: 2 / 1;
   margin: 0 auto;
+}
+
+.audio-button {
+  margin: 0 20px;
+  border: none;
+  width: 50px;
+  background: none;
+}
+.audio-button img {
+  height: 30px;
+}
+.audio-button.rain img {
+  margin: 0 auto;
+}
+
+.attribution {
+  font-size: 70%;
+  max-width: 400px;
+  margin: 40px auto 0;
+  text-align: center;
+}
+.attribution a {
+  white-space: nowrap;
 }

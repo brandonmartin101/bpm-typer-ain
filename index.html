@@ -1,22 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>Typer Ain</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel='stylesheet' href='style.css'>
 </head>
 
 <body>
   <h1>Typer Ain</h1>
   <p>You are Ain. Letters fall from the sky. Type the letters to block the rain, Ain.</p>
-  <button type='button' id='ain-start'>Start Game</button>
+  <div class='buttons-wrap'>
+    <button type='button' id='rain-mute' class='audio-button rain'><img src='images/droplet-slash.svg'
+        id='rain-mute-img' alt='Mute Rain' /></button>
+    <button type='button' id='ain-start'>Start Game</button>
+    <button type='button' id='sfx-mute' class='audio-button sfx'><img src='images/volume-off.svg' id='sfx-mute-img'
+        alt='Mute SFX' /></button>
+  </div>
   <canvas id='ain-game' width='1000' height='500'></canvas>
   <div id='ain-score'>
     <div id='ain-current-score'>Current Score: 0</div>
     <div id='ain-high-score'>High Score: 0</div>
     <div id='ain-spawn-rate'>Spawn Rate: 1.8/second</div>
+  </div>
+  <div class="attribution">
+    <p>Audio from:</p>
+    <cite><a
+        href="https://soundbible.com/1908-2-Minute-Storm.html">https://soundbible.com/1908-2-Minute-Storm.html</a></cite>
+    <cite><a
+        href="https://soundbible.com/2181-Dial-Tone-American.html">https://soundbible.com/2181-Dial-Tone-American.html</a></cite>
+    <cite><a
+        href="https://soundbible.com/2154-Text-Message-Alert-1.html">https://soundbible.com/2154-Text-Message-Alert-1.html</a></cite>
   </div>
   <script src='./typer-ain.js'></script>
 </body>

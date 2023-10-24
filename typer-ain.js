@@ -9,6 +9,15 @@ let ain = {
   },
   highScore: localStorage.getItem('ainHighScore') || 0,
 
+  soundBoard: {
+    // https://soundbible.com/1908-2-Minute-Storm.html
+    rain: new Audio('audio/2-minute-storm_mike-koenig.mp3'),
+    // https://soundbible.com/2154-Text-Message-Alert-1.html
+    sfxGood: new Audio('audio/sms-alert-1-daniel_simon.mp3'),
+    // https://soundbible.com/2181-Dial-Tone-American.html
+    sfxBad: new Audio('audio/america-dial-tone-daniel_simon.mp3'),
+  },
+
   // game functions
   getRandomChar: (special) => {
     if (special) {
@@ -52,7 +61,17 @@ const ainLoop = () => {
     char.y += 1
     if (char.y > ain.gameArea.height) {
       // letter was missed
-      ain.currentScore -= 5
+      if (!ain.soundBoard.sfxBad.muted) {
+        const sfxBad = ain.soundBoard.sfxBad.cloneNode()
+        sfxBad.volume = 0.05
+        sfxBad.play()
+        setTimeout(() => {
+          sfxBad.pause()
+          sfxBad.currentTime = 0
+        }, 1000)
+      }
+      //TODO decrease health bar (once implemented)
+      ain.currentScore -= 1
       ain.deadChars.push(char)
       ain.chars.splice(index, 1)
     }
@@ -92,6 +111,12 @@ document.addEventListener('keypress', (e) => {
   let matched = false
   for (let i = 0; i < ain.chars.length; i++) {
     if (e.key === ain.chars[i].letter) {
+      if (!ain.soundBoard.sfxGood.muted) {
+        const sfxGood = ain.soundBoard.sfxGood.cloneNode()
+        sfxGood.volume = 0.2
+        sfxGood.play()
+      }
+      //TODO increase health bar maybe? heal with successful keys?
       matched = true
       ain.currentScore++
       ain.chars.splice(i, 1)
@@ -99,6 +124,15 @@ document.addEventListener('keypress', (e) => {
     }
   }
   if (!matched) {
+    if (!ain.soundBoard.sfxBad.muted) {
+      const sfxBad = ain.soundBoard.sfxBad.cloneNode()
+      sfxBad.volume = 0.1
+      sfxBad.play()
+      setTimeout(() => {
+        sfxBad.pause()
+        sfxBad.currentTime = 0
+      }, 100)
+    }
     ain.currentScore--
     ain.deadChars.push({
       letter: ain.getRandomChar(true),
@@ -107,6 +141,7 @@ document.addEventListener('keypress', (e) => {
     })
   }
 })
+
 document.querySelector('#ain-start').addEventListener('click', (e) => {
   e.target.textContent = 'Restart'
   e.target.blur()
@@ -115,5 +150,41 @@ document.querySelector('#ain-start').addEventListener('click', (e) => {
   ain.charSpawnRate = 0.03
   ain.chars = [] // [{ letter:'a', x:0, y:0 },...]
   ain.deadChars = []
+  //TODO initialize health bar that will be used in the game
   ainLoop()
+})
+
+document.querySelector('#rain-mute').addEventListener('click', (e) => {
+  if (ain.soundBoard.rain.paused) {
+    ain.soundBoard.rain.play()
+    localStorage.setItem('ainRainMuted', 'false')
+    document.querySelector('#rain-mute-img').src = 'images/droplet.svg'
+  } else {
+    ain.soundBoard.rain.pause()
+    localStorage.setItem('ainRainMuted', 'true')
+    document.querySelector('#rain-mute-img').src = 'images/droplet-slash.svg'
+  }
+})
+
+document.querySelector('#sfx-mute').addEventListener('click', (e) => {
+  if (ain.soundBoard.sfxGood.muted && ain.soundBoard.sfxBad.muted) {
+    ain.soundBoard.sfxGood.muted = false
+    ain.soundBoard.sfxBad.muted = false
+    localStorage.setItem('ainSfxMuted', 'false')
+    document.querySelector('#sfx-mute-img').src = 'images/volume-high.svg'
+  } else {
+    ain.soundBoard.sfxGood.muted = true
+    ain.soundBoard.sfxBad.muted = true
+    localStorage.setItem('ainSfxMuted', 'true')
+    document.querySelector('#sfx-mute-img').src = 'images/volume-off.svg'
+  }
+})
+
+document.addEventListener('DOMContentLoaded', (e) => {
+  if (localStorage.getItem('ainRainMuted') === 'false') {
+    document.querySelector('#rain-mute').click()
+  }
+  if (localStorage.getItem('ainSfxMuted') === 'false') {
+    document.querySelector('#sfx-mute').click()
+  }
 })
