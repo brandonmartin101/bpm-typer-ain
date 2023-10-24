@@ -68,7 +68,7 @@ const ainLoop = () => {
         setTimeout(() => {
           sfxBad.pause()
           sfxBad.currentTime = 0
-        }, 1000)
+        }, 500)
       }
       //TODO decrease health bar (once implemented)
       ain.currentScore -= 1
@@ -131,7 +131,7 @@ document.addEventListener('keypress', (e) => {
       setTimeout(() => {
         sfxBad.pause()
         sfxBad.currentTime = 0
-      }, 100)
+      }, 500)
     }
     ain.currentScore--
     ain.deadChars.push({

@@ -7,15 +7,6 @@
   font-display: swap;
 }
 
-:root {
-  --color: #111;
-  --background: #fff;
-  --special: green;
-  --font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-  --font-size: 18px;
-}
-
 /* RESET
 	From Josh Comeau
 	https://www.joshwcomeau.com/css/custom-css-reset/
@@ -68,10 +59,11 @@ h6 {
 /* Now my stuff */
 html,
 body {
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  color: var(--color);
-  background-color: var(--background);
+  font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 18px;
+  color: #111;
+  background-color: #eee;
   margin: 0;
   min-height: 100vh;
   text-align: center;
@@ -81,12 +73,12 @@ body {
   align-content: center;
 }
 button {
-  max-width: 200px;
   margin: 20px auto;
   cursor: pointer;
 }
 canvas {
   border: 1px solid #222;
+  background: #fff;
   width: 1000px;
   aspect-ratio: 2 / 1;
   margin: 0 auto;
@@ -97,6 +89,8 @@ canvas {
   border: none;
   width: 50px;
   background: none;
+  position: relative;
+  top: 8px;
 }
 .audio-button img {
   height: 30px;
@@ -114,3 +108,37 @@ canvas {
 .attribution a {
   white-space: nowrap;
 }
+
+/* Background animation from https://codepen.io/alvarotrigo/pen/MWqqBXX */
+/* Photo by Eutah Mizushima on Unsplash */
+/* TODO add a nice background with animation or something */
+/* body {
+  background-image: url('images/eutah-mizushima-F-t5EpfQNpk-unsplash.jpg');
+  background-size: cover;
+  animation: slidein 100s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    background-position: top;
+    background-size: 3000px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
+}
+
+@keyframes slidein {
+  from {
+    background-position: top;
+    background-size: 3000px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
+} */
